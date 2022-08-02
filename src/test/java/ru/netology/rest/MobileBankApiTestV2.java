@@ -4,10 +4,11 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 class MobileBankApiTestV2 {
     @Test
-    void shouldReturnDemoAccounts() {
+    void shouldReturnDemoAccounts2() {
       // Given - When - Then
       // Предусловия
       given()
@@ -21,6 +22,6 @@ class MobileBankApiTestV2 {
           // .header("Content-Type", "application/json; charset=UTF-8")
           // специализированные проверки - лучше
           .contentType(ContentType.JSON)
-      ;
+              .body(matchesJsonSchemaInClasspath("accounts.schema.json"));
     }
 }
